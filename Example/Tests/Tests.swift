@@ -1,5 +1,4 @@
 import XCTest
-import Go23Web3Swift
 
 class Tests: XCTestCase {
     
