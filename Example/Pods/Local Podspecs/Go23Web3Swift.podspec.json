@@ -1,6 +1,6 @@
 {
   "name": "Go23Web3Swift",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "Go23Web3Swift foundationality",
   "description": "Go23Web3Swift Core lib",
   "homepage": "https://github.com/TaranWu/Go23Web3Swift",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/TaranWu/Go23Web3Swift.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "platforms": {
     "ios": "13.0"
@@ -22,10 +22,10 @@
   "source_files": "Go23Web3Swift/Classes/**/*",
   "dependencies": {
     "Alamofire": [
-      "~> 4.7"
+
     ],
     "Alamofire-Synchronous": [
-      "~> 4.0"
+
     ],
     "BigInt": [
       "~> 3.0"

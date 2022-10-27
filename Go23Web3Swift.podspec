@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Go23Web3Swift'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Go23Web3Swift foundationality'
 
   s.description      = <<-DESC
@@ -33,8 +33,8 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   
-  s.dependency 'Alamofire', '~> 4.7'
-  s.dependency 'Alamofire-Synchronous', '~> 4.0'
+  s.dependency 'Alamofire'
+  s.dependency 'Alamofire-Synchronous'
   s.dependency 'BigInt', '~> 3.0'
   s.dependency 'CryptoSwift', '~> 1.0'
   s.dependency 'libsodium', '~> 1.0.12'
