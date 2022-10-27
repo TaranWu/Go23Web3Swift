@@ -1,0 +1,16 @@
+PODS:
+  - Go23Web3Swift (0.1.0)
+
+DEPENDENCIES:
+  - Go23Web3Swift (from `../`)
+
+EXTERNAL SOURCES:
+  Go23Web3Swift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Go23Web3Swift: 7d4f66b1ddcdad5cd09c3f363297fa62bf6f358a
+
+PODFILE CHECKSUM: 8f98a1fd06bc02d4712a545aa52cafdd9536f42b
+
+COCOAPODS: 1.11.3

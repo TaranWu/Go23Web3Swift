@@ -1,0 +1,6 @@
+framework module Go23Web3Swift {
+  umbrella header "Go23Web3Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
