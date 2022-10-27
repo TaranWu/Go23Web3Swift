@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import enum Result.Result
 import BigInt
 import PromiseKit
 fileprivate typealias PromiseResult = PromiseKit.Result
@@ -27,51 +26,51 @@ extension web3.web3contract {
             self.filter = filter
         }
         
-        public func parseBlockByNumber(_ blockNumber: UInt64) -> Result<[EventParserResultProtocol], Web3Error> {
+        public func parseBlockByNumber(_ blockNumber: UInt64) -> Swift.Result<[EventParserResultProtocol], Web3Error> {
             do {
                 let result = try self.parseBlockByNumberPromise(blockNumber).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
         
-        public func parseBlock(_ block: Block) -> Result<[EventParserResultProtocol], Web3Error> {
+        public func parseBlock(_ block: Block) -> Swift.Result<[EventParserResultProtocol], Web3Error> {
             do {
                 let result = try self.parseBlockPromise(block).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
         
-        public func parseTransactionByHash(_ hash: Data) -> Result<[EventParserResultProtocol], Web3Error> {
+        public func parseTransactionByHash(_ hash: Data) -> Swift.Result<[EventParserResultProtocol], Web3Error> {
             do {
                 let result = try self.parseTransactionByHashPromise(hash).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
         
-        public func parseTransaction(_ transaction: EthereumTransaction) -> Result<[EventParserResultProtocol], Web3Error> {
+        public func parseTransaction(_ transaction: EthereumTransaction) -> Swift.Result<[EventParserResultProtocol], Web3Error> {
             do {
                 let result = try self.parseTransactionPromise(transaction).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
     }
@@ -271,14 +270,14 @@ extension web3.web3contract.EventParser {
 }
 
 extension web3.web3contract {
-    public func getIndexedEvents(eventName: String?, filter: EventFilter) -> Result<[EventParserResultProtocol], Web3Error> {
-        guard let rawContract = self.contract as? ContractV2 else {return Result.failure(Web3Error.nodeError("ABIv1 is not supported for this method"))}
+    public func getIndexedEvents(eventName: String?, filter: EventFilter) -> Swift.Result<[EventParserResultProtocol], Web3Error> {
+        guard let rawContract = self.contract as? ContractV2 else {return Swift.Result.failure(Web3Error.nodeError("ABIv1 is not supported for this method"))}
         guard let preEncoding = encodeTopicToGetLogs(contract: rawContract, eventName: eventName, filter: filter) else {
-            return Result.failure(Web3Error.dataError)
+            return Swift.Result.failure(Web3Error.dataError)
         }
         var event: ABIv2.Element.Event? = nil
         if eventName != nil {
-            guard let ev = rawContract.events[eventName!] else {return Result.failure(Web3Error.dataError)}
+            guard let ev = rawContract.events[eventName!] else {return Swift.Result.failure(Web3Error.dataError)}
             event = ev
         }
         let request = JSONRPCRequestFabric.prepareRequest(.getLogs, parameters: [preEncoding])
@@ -286,17 +285,17 @@ extension web3.web3contract {
         let result = ResultUnwrapper.getResponse(response)
         switch result {
         case .failure(let error):
-            return Result.failure(error)
+            return Swift.Result.failure(error)
         case .success(let payload):
             if payload is NSNull {
-                return Result.failure(Web3Error.nodeError("Empty response"))
+                return Swift.Result.failure(Web3Error.nodeError("Empty response"))
             }
             guard let resultArray = payload as? [[String: AnyObject]] else {
-                return Result.failure(Web3Error.dataError)
+                return Swift.Result.failure(Web3Error.dataError)
             }
             var allLogs = [EventLog]()
             for log in resultArray {
-                guard let parsedLog = EventLog.init(log) else {return Result.failure(Web3Error.dataError)}
+                guard let parsedLog = EventLog.init(log) else {return Swift.Result.failure(Web3Error.dataError)}
                 allLogs.append(parsedLog)
             }
             if event != nil {
@@ -313,9 +312,9 @@ extension web3.web3contract {
                 }
                 var allResults = [EventParserResultProtocol]()
                 allResults = decodedLogs
-                return Result(allResults)
+                return Swift.Result(allResults)
             }
-            return Result([EventParserResultProtocol]())
+            return Swift.Result([EventParserResultProtocol]())
         }
     }
 }

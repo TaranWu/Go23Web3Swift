@@ -12,7 +12,7 @@ PODS:
     - CryptoSwift (~> 1.0)
     - libsodium (~> 1.0.12)
     - PromiseKit (~> 6.3.0)
-    - Result (~> 3.1)
+    - Result
     - secp256k1_ios (~> 0.1.3)
   - libsodium (1.0.12)
   - PromiseKit (6.3.5):
@@ -24,7 +24,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.3.5):
     - PromiseKit/CorePromise
-  - Result (3.2.4)
+  - Result (5.0.0)
   - secp256k1_ios (0.1.3)
   - SipHash (1.2.2)
 
@@ -52,13 +52,13 @@ SPEC CHECKSUMS:
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CryptoSwift: 562f8eceb40e80796fffc668b0cad9313284cfa6
-  Go23Web3Swift: c718a8db08d37299ed0c6f5f1e7714f6344d8cca
+  Go23Web3Swift: 73ab0a7dff5c5b9752a0ad8ae0a38452efc32f1c
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
   PromiseKit: 32c36425387e9cfc7f1206f27bfd906d0b53c0d6
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  Result: ed341d2f236af425b803e690e9bd8fd0a0cb7c5a
   secp256k1_ios: ac9ef04e761f43c58012b28548afa91493761f17
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
 
-PODFILE CHECKSUM: 1b46cf16680f82b1a60ab49763a0a18854b31840
+PODFILE CHECKSUM: e5fbb20c58dc7722307ae3053285efe1123851f4
 
 COCOAPODS: 1.11.3

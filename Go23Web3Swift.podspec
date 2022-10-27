@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Go23Web3Swift'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Go23Web3Swift foundationality'
 
   s.description      = <<-DESC
@@ -21,7 +21,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/TaranWu/Go23Web3Swift.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '13.0'
-
+  s.swift_version    = '5.0'
+  s.platform         = :ios, "13.0"
+  
   s.source_files = 'Go23Web3Swift/Classes/**/*'
   
   # s.resource_bundles = {
@@ -37,7 +39,7 @@ Pod::Spec.new do |s|
   s.dependency 'CryptoSwift', '~> 1.0'
   s.dependency 'libsodium', '~> 1.0.12'
   s.dependency 'PromiseKit', '~> 6.3.0'
-  s.dependency 'Result', '~> 3.1'
+  s.dependency 'Result'
   s.dependency 'secp256k1_ios', '~> 0.1.3'
       
 end

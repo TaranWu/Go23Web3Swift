@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import enum Result.Result
 import BigInt
 import PromiseKit
+
 fileprivate typealias PromiseResult = PromiseKit.Result
 
 extension web3.web3contract {
@@ -45,22 +45,22 @@ extension web3.web3contract {
             guard let operation = ContractSendOperation.init(web3, queue: web3.queue, intermediate: self, options: options, onBlock: onBlock, password: password) else {
                 guard let dispatchQueue =  queue.underlyingQueue else {return}
                 return dispatchQueue.async {
-                    callback(Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
+                    callback(Swift.Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
                 }
             }
             operation.next = OperationChainingType.callback(callback, queue)
             self.web3.queue.addOperation(operation)
         }
 
-        public func send(password: String = "BANKEXFOUNDATION", options: Web3Options? = nil, onBlock: String = "pending") -> Result<TransactionSendingResult, Web3Error> {
+        public func send(password: String = "BANKEXFOUNDATION", options: Web3Options? = nil, onBlock: String = "pending") -> Swift.Result<TransactionSendingResult, Web3Error> {
             do {
                 let result = try self.sendPromise(password: password, options: options, onBlock: onBlock).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
 
@@ -136,15 +136,15 @@ extension web3.web3contract {
 //        }
 
 
-        public func call(options: Web3Options?, onBlock: String = "latest") -> Result<[String:Any], Web3Error> {
+        public func call(options: Web3Options?, onBlock: String = "latest") -> Swift.Result<[String:Any], Web3Error>  {
             do {
                 let result = try self.callPromise(options: options, onBlock: onBlock).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
 
@@ -210,22 +210,22 @@ extension web3.web3contract {
             guard let operation = ContractCallOperation(web3, queue: web3.queue, intermediate: self, onBlock: onBlock, options: options) else {
                 guard let dispatchQueue =  queue.underlyingQueue else {return}
                 return dispatchQueue.async {
-                    callback(Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
+                    callback(Swift.Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
                 }
             }
             operation.next = OperationChainingType.callback(callback, queue)
             self.web3.queue.addOperation(operation)
         }
 
-        public func estimateGas(options: Web3Options?, onBlock: String = "latest") -> Result<BigUInt, Web3Error> {
+        public func estimateGas(options: Web3Options?, onBlock: String = "latest") -> Swift.Result<BigUInt, Web3Error> {
             do {
                 let result = try self.estimateGasPromise(options: options, onBlock: onBlock).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
 
@@ -241,22 +241,22 @@ extension web3.web3contract {
             guard let operation = ContractEstimateGasOperation.init(web3, queue: web3.queue, intermediate: self, onBlock: onBlock) else {
                 guard let dispatchQueue =  queue.underlyingQueue else {return}
                 return dispatchQueue.async {
-                    callback(Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
+                    callback(Swift.Result<AnyObject, Web3Error>.failure(Web3Error.dataError))
                 }
             }
             operation.next = OperationChainingType.callback(callback, queue)
             self.web3.queue.addOperation(operation)
         }
 
-        func assemble(options: Web3Options? = nil, onBlock: String = "pending") -> Result<EthereumTransaction, Web3Error> {
+        func assemble(options: Web3Options? = nil, onBlock: String = "pending") -> Swift.Result<EthereumTransaction, Web3Error> {
             do {
                 let result = try self.assemblePromise(options: options, onBlock: onBlock).wait()
-                return Result(result)
+                return Swift.Result(result)
             } catch {
                 if let err = error as? Web3Error {
-                    return Result.failure(err)
+                    return Swift.Result.failure(err)
                 }
-                return Result.failure(Web3Error.generalError(error))
+                return Swift.Result.failure(Web3Error.generalError(error))
             }
         }
 

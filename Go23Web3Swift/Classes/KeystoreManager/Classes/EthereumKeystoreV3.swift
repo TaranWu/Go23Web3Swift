@@ -31,8 +31,7 @@ public class EthereumKeystoreV3: AbstractKeystore {
     
     public func UNSAFE_getPrivateKeyData(password: String, account: EthereumAddress) throws -> Data {
         if self.addresses?.count == 1 && account == self.addresses?.last {
-            guard let pk = try? self.getKeyData(password) else {throw AbstractKeystoreError.invalidPasswordError}
-            guard let privateKey = pk else {throw AbstractKeystoreError.invalidAccountError}
+            guard let privateKey = try? self.getKeyData(password) else {throw AbstractKeystoreError.invalidPasswordError}
             return privateKey
         }
         throw AbstractKeystoreError.invalidAccountError
