@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'Go23Web3Swift_Example' do
+  pod 'Go23Web3Swift', :path => '../'
+
+  target 'Go23Web3Swift_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
