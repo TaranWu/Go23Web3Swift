@@ -1,6 +1,6 @@
 //
-//  web3swift.h
-//  web3swift
+//  Go23Web3Swift.h
+//  Go23Web3Swift
 //
 //
 
